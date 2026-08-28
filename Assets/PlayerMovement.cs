@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -20,20 +21,19 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        float h = Input.GetAxis("Horizontal");
-        float v = Input.GetAxis("Vertical");
-
-        movementVector = new Vector3(h, 0, v);
-
-        if(Input.GetButtonDown("Jump"))
-        {
-            Jump();
-        }
     }
 
-    private void Jump()
+    public void OnJump(InputAction.CallbackContext ctx)
     {
-        rb.AddForce(Vector3.up * jumpSpeed, ForceMode.Impulse);
+        if (ctx.performed)
+        {
+            rb.AddForce(Vector3.up * jumpSpeed, ForceMode.Impulse);
+        }
+    }
+    public void OnMovement(InputAction.CallbackContext ctx)
+    {
+        Vector2 inputVector = ctx.ReadValue<Vector2>();
+        movementVector = new Vector3(inputVector.x,0, inputVector.y);
     }
 
     private void FixedUpdate()
