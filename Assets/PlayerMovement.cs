@@ -6,6 +6,7 @@ public class PlayerMovement : MonoBehaviour
 {
     //REFERENCES
     Rigidbody rb;
+    [SerializeField] Animator animator;
 
     //MOVEMENT VALUES
     [SerializeField] float moveSpeed = 20.0f;
@@ -21,6 +22,7 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        animator.SetFloat("walkSpeed", movementVector.magnitude);//update walk float for animations
     }
 
     public void OnJump(InputAction.CallbackContext ctx)
@@ -34,6 +36,8 @@ public class PlayerMovement : MonoBehaviour
     {
         Vector2 inputVector = ctx.ReadValue<Vector2>();
         movementVector = new Vector3(inputVector.x,0, inputVector.y);
+
+        animator.transform.forward = movementVector.normalized;//set forward direction
     }
 
     private void FixedUpdate()
