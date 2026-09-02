@@ -2,7 +2,7 @@
 - Project name: Refresher Project
 - Unity version: Unity 6000.3.14f1
 - Active game object:
-  - Name: Player
+  - Name: Player Idle
   - Tag: Untagged
   - Layer: Default
 <!-- UNITY CODE ASSIST INSTRUCTIONS END -->

@@ -37,7 +37,7 @@ public class PlayerMovement : MonoBehaviour
         Vector2 inputVector = ctx.ReadValue<Vector2>();
         movementVector = new Vector3(inputVector.x,0, inputVector.y);
 
-        animator.transform.forward = movementVector.normalized;//set forward direction
+        transform.forward = movementVector.normalized;//set forward direction
     }
 
     private void FixedUpdate()
