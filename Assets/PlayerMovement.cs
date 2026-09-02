@@ -9,9 +9,12 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] Animator animator;
 
     //MOVEMENT VALUES
-    [SerializeField] float moveSpeed = 20.0f;
-    [SerializeField] float jumpSpeed = 10.0f;
-    Vector3 movementVector;
+    [SerializeField] float moveSpeed = 15.0f;
+    [SerializeField] float jumpStrength = 10.0f;
+    [SerializeField] float rotateSpeed = 5.0f;
+
+    Vector2 moveInput;
+    bool isGrounded;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -22,27 +25,40 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        animator.SetFloat("walkSpeed", movementVector.magnitude);//update walk float for animations
+        animator.SetFloat("walkSpeed", moveInput.magnitude);//update walk float for animations
     }
 
     public void OnJump(InputAction.CallbackContext ctx)
     {
-        if (ctx.performed)
+        if (ctx.performed && isGrounded)
         {
-            rb.AddForce(Vector3.up * jumpSpeed, ForceMode.Impulse);
+            rb.AddForce(Vector3.up * jumpStrength, ForceMode.Impulse);
         }
+    }
+    private void OnCollisionStay(Collision collision)
+    {
+        isGrounded = true;
+    }
+    private void OnCollisionExit(Collision collision)
+    {
+        isGrounded = false;
     }
     public void OnMovement(InputAction.CallbackContext ctx)
     {
-        Vector2 inputVector = ctx.ReadValue<Vector2>();
-        movementVector = new Vector3(inputVector.x,0, inputVector.y);
-
-        transform.forward = movementVector.normalized;//set forward direction
+        moveInput = ctx.ReadValue<Vector2>();
     }
 
     private void FixedUpdate()
     {
-        rb.AddForce(movementVector * moveSpeed, ForceMode.Acceleration);
+        Vector3 move = transform.right * moveInput.x + transform.forward * moveInput.y;
 
+        rb.linearVelocity = new Vector3(move.x * moveSpeed, rb.linearVelocity.y, move.z * moveSpeed);
+        if (move.sqrMagnitude > 0.01f)
+        {
+            Quaternion targetRotation = Quaternion.LookRotation(move);
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotateSpeed * Time.fixedDeltaTime);
+        }
+
+        rb.angularVelocity = Vector3.zero;
     }
 }
