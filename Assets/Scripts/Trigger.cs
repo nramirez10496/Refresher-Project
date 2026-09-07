@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.Events;
 
-public class DoorTrigger : MonoBehaviour
+public class Trigger : MonoBehaviour
 {
     [SerializeField] UnityEvent OnEnter;
     [SerializeField] UnityEvent OnExit;
