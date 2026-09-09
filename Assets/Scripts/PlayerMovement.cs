@@ -32,16 +32,20 @@ public class PlayerMovement : MonoBehaviour
     {
         if (ctx.performed && isGrounded)
         {
+            isGrounded = false;
+            animator.SetTrigger("jump");
             rb.AddForce(Vector3.up * jumpStrength, ForceMode.Impulse);
         }
     }
     private void OnCollisionStay(Collision collision)
     {
         isGrounded = true;
+        animator.SetBool("isGrounded", true);
     }
     private void OnCollisionExit(Collision collision)
     {
         isGrounded = false;
+        animator.SetBool("isGrounded", false);
     }
     public void OnMovement(InputAction.CallbackContext ctx)
     {

@@ -1945,10 +1945,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1478401013}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 79.52681, y: 132.13913}
-  m_SizeDelta: {x: 41.9159, y: 32.954}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 359.5268, y: -25.86087}
+  m_SizeDelta: {x: 41.915894, y: 32.95401}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &285803800
 MonoBehaviour:
@@ -3778,7 +3778,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: '::'
   animator: {fileID: 1764410922}
   moveSpeed: 6
-  jumpStrength: 5
+  jumpStrength: 8
   rotateSpeed: 5
 --- !u!23 &433449832
 MeshRenderer:
@@ -5415,10 +5415,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1478401013}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -107, y: 132}
-  m_SizeDelta: {x: 325.5463, y: 33.2383}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 173, y: -26}
+  m_SizeDelta: {x: 325.5463, y: 33.23831}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &684202896
 MonoBehaviour:

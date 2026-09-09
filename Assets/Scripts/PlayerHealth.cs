@@ -23,7 +23,7 @@ public class PlayerHealth : MonoBehaviour
 
             if (currentHealth.amount > 0)
             {
-                DamagePlayer(5);
+                DamagePlayer(10);
             }
         }
         damageCoroutine = null;
